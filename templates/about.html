@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - HealthAI{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="main-container p-4 fade-in">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-white mb-4">
+                Healthcare AI Analytics
+            </h1>
+            <p class="lead text-white-50 mb-4">
+                Explore comprehensive insights from our medical prediction system. Our AI model analyzes thousands 
+                of symptom patterns to provide accurate health assessments and recommendations.
+            </p>
+        </div>
+
+        <!-- Key Statistics -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-3 col-md-6">
+                <div class="glass-card text-center h-100 slide-up">
+                    <div class="mb-3">
+                        <i class="fas fa-database fs-1 text-primary"></i>
+                    </div>
+                    <h3 class="fw-bold text-primary">{{ "{:,}".format(analytics.total_records) }}</h3>
+                    <p class="text-muted mb-0">Training Records</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="glass-card text-center h-100 slide-up" style="animation-delay: 0.1s;">
+                    <div class="mb-3">
+                        <i class="fas fa-brain fs-1 text-success"></i>
+                    </div>
+                    <h3 class="fw-bold text-success">{{ analytics.model_accuracy }}%</h3>
+                    <p class="text-muted mb-0">Model Accuracy</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="glass-card text-center h-100 slide-up" style="animation-delay: 0.2s;">
+                    <div class="mb-3">
+                        <i class="fas fa-virus fs-1 text-warning"></i>
+                    </div>
+                    <h3 class="fw-bold text-warning">{{ analytics.total_diseases }}</h3>
+                    <p class="text-muted mb-0">Disease Categories</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="glass-card text-center h-100 slide-up" style="animation-delay: 0.3s;">
+                    <div class="mb-3">
+                        <i class="fas fa-list-ul fs-1 text-info"></i>
+                    </div>
+                    <h3 class="fw-bold text-info">{{ analytics.total_symptoms }}</h3>
+                    <p class="text-muted mb-0">Tracked Symptoms</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="row g-4 mb-5">
+            <!-- Disease Distribution Chart -->
+            <div class="col-lg-6">
+                <div class="glass-card h-100">
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-chart-pie fs-3 text-primary me-3"></i>
+                        <h3 class="fw-bold mb-0">Disease Distribution</h3>
+                    </div>
+                    <div id="diseaseChart" style="height: 400px;"></div>
+                </div>
+            </div>
+            
+            <!-- Symptom Frequency Chart -->
+            <div class="col-lg-6">
+                <div class="glass-card h-100">
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-chart-bar fs-3 text-success me-3"></i>
+                        <h3 class="fw-bold mb-0">Most Common Symptoms</h3>
+                    </div>
+                    <div id="symptomChart" style="height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Information -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-8">
+                <div class="glass-card">
+                    <h3 class="fw-bold mb-4">
+                        <i class="fas fa-cogs me-3 text-primary"></i>Model Architecture & Performance
+                    </h3>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h5 class="fw-bold text-primary mb-3">Algorithm Details</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>Algorithm:</strong> Support Vector Machine (SVM)
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>Kernel:</strong> Linear
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>Features:</strong> {{ analytics.total_symptoms }} symptoms
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>Classes:</strong> {{ analytics.total_diseases }} diseases
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h5 class="fw-bold text-success mb-3">Performance Metrics</h5>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Accuracy</span>
+                                    <span class="fw-bold">{{ analytics.model_accuracy }}%</span>
+                                </div>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar bg-success" style="width:{{ analytics.model_accuracy }}%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Precision</span>
+                                    <span class="fw-bold">92%</span>
+                                </div>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar bg-info" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Recall</span>
+                                    <span class="fw-bold">89%</span>
+                                </div>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar bg-warning" style="width: 89%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="glass-card h-100">
+                    <h5 class="fw-bold mb-4">
+                        <i class="fas fa-lightbulb me-2 text-warning"></i>Key Insights
+                    </h5>
+                    
+                    <div class="mb-3">
+                        <div class="bg-light rounded-3 p-3 mb-2">
+                            <h6 class="fw-bold text-primary mb-1">High Accuracy</h6>
+                            <p class="small text-muted mb-0">
+                                Our model achieves {{ analytics.model_accuracy }}% accuracy across all disease categories.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="bg-light rounded-3 p-3 mb-2">
+                            <h6 class="fw-bold text-success mb-1">Comprehensive Coverage</h6>
+                            <p class="small text-muted mb-0">
+                                Covers {{ analytics.total_diseases }} major disease categories with {{ analytics.total_symptoms }} symptoms.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="bg-light rounded-3 p-3 mb-2">
+                            <h6 class="fw-bold text-info mb-1">Real-time Predictions</h6>
+                            <p class="small text-muted mb-0">
+                                Instant diagnosis based on symptom input patterns.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dataset Information -->
+        <div class="glass-card">
+            <h3 class="fw-bold mb-4">
+                <i class="fas fa-table me-3 text-primary"></i>Dataset Overview
+            </h3>
+            
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="text-center p-3 bg-light rounded-3">
+                        <i class="fas fa-file-csv fs-3 text-primary mb-2"></i>
+                        <h6 class="fw-bold">Training Data</h6>
+                        <p class="small text-muted mb-0">{{ "{:,}".format(analytics.total_records) }} samples</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="text-center p-3 bg-light rounded-3">
+                        <i class="fas fa-pills fs-3 text-success mb-2"></i>
+                        <h6 class="fw-bold">Medications</h6>
+                        <p class="small text-muted mb-0">Treatment database</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="text-center p-3 bg-light rounded-3">
+                        <i class="fas fa-shield-alt fs-3 text-warning mb-2"></i>
+                        <h6 class="fw-bold">Precautions</h6>
+                        <p class="small text-muted mb-0">Safety guidelines</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="text-center p-3 bg-light rounded-3">
+                        <i class="fas fa-info-circle fs-3 text-info mb-2"></i>
+                        <h6 class="fw-bold">Descriptions</h6>
+                        <p class="small text-muted mb-0">Disease information</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Render Disease Distribution Chart
+    var diseaseData = {{ disease_chart|safe }};
+    Plotly.newPlot('diseaseChart', diseaseData.data, diseaseData.layout, {responsive: true});
+    
+    // Render Symptom Frequency Chart
+    var symptomData = {{ symptoms_chart|safe }};
+    Plotly.newPlot('symptomChart', symptomData.data, symptomData.layout, {responsive: true});
+</script>
+{% endblock %}

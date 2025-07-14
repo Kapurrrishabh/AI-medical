@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - HealthAI{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="main-container p-4 fade-in">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-white mb-4">
+                Contact Us
+            </h1>
+            <p class="lead text-white-50 mb-4">
+                Have questions about our AI diagnosis system? We're here to help!
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="glass-card">
+                    <h3 class="fw-bold mb-4">
+                        <i class="fas fa-envelope me-3 text-primary"></i>Send us a Message
+                    </h3>
+                    
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label fw-semibold">First Name</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label fw-semibold">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-semibold">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="subject" class="form-label fw-semibold">Subject</label>
+                            <select class="form-control" id="subject" required>
+                                <option value="">Select a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="medical">Medical Question</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="message" class="form-label fw-semibold">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="col-lg-4">
+                <div class="glass-card h-100">
+                    <h4 class="fw-bold mb-4">
+                        <i class="fas fa-info-circle me-2 text-primary"></i>Get in Touch
+                    </h4>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex align-items-start mb-3">
+                            <i class="fas fa-map-marker-alt fs-4 text-primary me-3 mt-1"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Address</h6>
+                                <p class="text-muted mb-0">
+                                    123 Healthcare AI Street<br>
+                                    Medical District<br>
+                                    Tech City, TC 12345
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-start mb-3">
+                            <i class="fas fa-phone fs-4 text-success me-3 mt-1"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Phone</h6>
+                                <p class="text-muted mb-0">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-start mb-3">
+                            <i class="fas fa-envelope fs-4 text-info me-3 mt-1"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Email</h6>
+                                <p class="text-muted mb-0">contact@healthai.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-clock fs-4 text-warning me-3 mt-1"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Support Hours</h6>
+                                <p class="text-muted mb-0">
+                                    Mon - Fri: 9:00 AM - 6:00 PM<br>
+                                    Sat - Sun: 10:00 AM - 4:00 PM
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div>
+                        <h6 class="fw-bold mb-3">Follow Us</h6>
+                        <div class="d-flex gap-3">
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="glass-card mt-5">
+            <h3 class="fw-bold mb-4">
+                <i class="fas fa-question-circle me-3 text-primary"></i>Frequently Asked Questions
+            </h3>
+            
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            How accurate is the AI diagnosis system?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our AI system achieves 94% accuracy based on extensive testing with medical datasets. 
+                            However, it should be used as a preliminary assessment tool and not replace professional medical consultation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Is my health data secure and private?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, we prioritize your privacy. All symptom data is processed locally and not stored on our servers. 
+                            We comply with healthcare data protection regulations.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Can I use this system for emergency situations?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            No, this system is not intended for emergency situations. In case of medical emergencies, 
+                            please call emergency services immediately or visit the nearest hospital.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            What should I do with the AI diagnosis results?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Use the results as preliminary information to discuss with your healthcare provider. 
+                            Always consult with a qualified medical professional for proper diagnosis and treatment.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
