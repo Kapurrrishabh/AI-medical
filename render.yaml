@@ -1,0 +1,25 @@
+# render.yaml
+services:
+  - type: web
+    name: flask-app
+    env: python
+    plan: starter
+    disk:
+      name: model-disk
+      mountPath: /var/data
+      sizeGB: 2
+
+    envVars:               
+      - key: MODEL_URL
+        value: https://huggingface.co/datasets/Rishabhkapur/randomforest/resolve/0086f42c03618fba46e187dde466eed4d608e653/randomforest_new.pkl
+
+    buildCommand: |
+      # Download the model only if it isn't already on the disk
+      if [ ! -f /var/data/model/randomforest_new.pkl ]; then
+        echo "Downloading model from Hugging Face…"
+        mkdir -p /var/data/model
+        curl -L "$MODEL_URL" -o /var/data/model/randomforest_new.pkl
+      fi
+      pip install -r requirements.txt
+
+    startCommand: gunicorn app:app
